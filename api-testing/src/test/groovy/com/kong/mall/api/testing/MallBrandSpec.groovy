@@ -1,7 +1,6 @@
 package com.kong.mall.api.testing
 
 import com.kong.mall.api.filter.MallAdminAuthFilter
-import org.springframework.http.HttpStatus
 
 import static org.hamcrest.Matchers.*
 
@@ -21,17 +20,18 @@ class MallBrandSpec extends BaseMallSpec{
                 .get("/brand/list?pageNum={pageNum}&pageSize={pageSize}", ["pageNum":pageNum,"pageSize":pageSize])
 
         then:
-        response.statusCode() == HttpStatus.OK.value()
+        response.statusCode() == 200
 
         expect:
         response
                 .then()
                 .assertThat()
+//                .body(matchesJsonSchemaInClasspath("brand-list-schema.json"))
                 .body("data.list.id", hasItems(actualIds))
                 .body("data.list", hasSize(listSize))
 
         where:
-        pageNum | pageSize || actualIds | listSize
-        1       | 5        || 2         | 5
+        pageNum | pageSize || actualIds || listSize
+        1       | 5        || 2         || 5
     }
 }

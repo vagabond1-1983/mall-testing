@@ -1,7 +1,6 @@
 package com.kong.mall.api.testing
 
-import org.springframework.http.HttpStatus
-import org.springframework.http.MediaType
+import io.restassured.http.ContentType
 import spock.lang.Unroll
 
 /**
@@ -14,8 +13,8 @@ class MallPermissionSpec extends BaseMallSpec{
         given:
         final request =
                 this.requestSpec
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .accept(MediaType.APPLICATION_JSON.toString())
+                        .contentType(ContentType.JSON)
+                        .accept(ContentType.JSON)
                         .body("{\"username\": \"$username\", \"password\": \"$password\"}")
 
         when:
@@ -23,7 +22,7 @@ class MallPermissionSpec extends BaseMallSpec{
                     .post("/admin/login")
 
         then:
-        response.statusCode() == HttpStatus.OK.value()
+        response.statusCode() == 200
 
         expect:
         response
