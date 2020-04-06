@@ -35,6 +35,7 @@ class MallBrandSpec extends BaseMallSpec{
         where:
         pageNum | pageSize || matchIds || listSize
         1       | 5        || hasItems(2) || 5
+        1       | 5        || not(3) || 5
         2       | 5        || hasItems(3) || 5
         1       | 10       || hasItems(2,3) || 10
     }
