@@ -1,6 +1,7 @@
 package com.kong.mall.api.testing
 
 import com.kong.mall.api.filter.MallAdminAuthFilter
+import spock.lang.Unroll
 
 import static org.hamcrest.Matchers.*
 import static io.restassured.matcher.RestAssuredMatchers.*
@@ -11,7 +12,8 @@ import static io.restassured.module.jsv.JsonSchemaValidator.*
  */
 class MallBrandSpec extends BaseMallSpec{
 
-    void "brand list test"() {
+    @Unroll
+    void "brand list num:#pageNum, size:#pageSize"() {
         given:
         final request = this.requestSpec
                 .filter(new MallAdminAuthFilter())
