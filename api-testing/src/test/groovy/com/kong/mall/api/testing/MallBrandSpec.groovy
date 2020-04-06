@@ -29,11 +29,13 @@ class MallBrandSpec extends BaseMallSpec{
                 .then()
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("brand-list-schema.json"))
-                .body("data.list.id", hasItems(actualIds))
+                .body("data.list.id", matchIds)
                 .body("data.list", hasSize(listSize))
 
         where:
-        pageNum | pageSize || actualIds || listSize
-        1       | 5        || 2         || 5
+        pageNum | pageSize || matchIds || listSize
+        1       | 5        || hasItems(2) || 5
+        2       | 5        || hasItems(3) || 5
+        1       | 10       || hasItems(2,3) || 10
     }
 }
