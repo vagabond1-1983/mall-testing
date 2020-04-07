@@ -21,7 +21,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.*
 class MallBrandSpec extends BaseMallSpec{
 
     @Unroll
-    void "brand list num:#pageNum, size:#pageSize"() {
+    def "brand list num:#pageNum, size:#pageSize"() {
         given:
         final request = this.requestSpec
                 .filter(new MallAdminAuthFilter())

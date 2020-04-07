@@ -42,14 +42,16 @@
             <!-- Only required if names of spec classes don't match default Surefire patterns (`*Test` etc.) -->
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
+                <version>2.20.1</version>
                 <configuration>
                     <useFile>false</useFile>
                     <includes>
                         <include>**/*Test.java</include>
                         <include>**/*Spec.java</include>
-                        <include>**/*Spec.groovy</include>
                     </includes>
+                    <excludes>
+                        <exclude>SimpleSpec</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <!-- Only required for spock-example build -->
@@ -88,6 +90,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
         <!-- Optional dependencies for using Spock -->
 
 <!--        spock spring-->
