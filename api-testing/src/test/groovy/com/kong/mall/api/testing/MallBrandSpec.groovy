@@ -1,6 +1,7 @@
 package com.kong.mall.api.testing
 
 import com.kong.mall.api.filter.MallAdminAuthFilter
+import spock.lang.Title
 import spock.lang.Unroll
 
 import static org.hamcrest.Matchers.*
@@ -9,7 +10,14 @@ import static io.restassured.module.jsv.JsonSchemaValidator.*
 
 /**
  * 品牌API测试
+ * TODO
+ * 1. db验证
+ * 2. 场景描述 @Title, @Narrative -- done
+ * 3. allure report -- done
+ * 4. 写入接口
+ * 5. 批量运行
  */
+@Title("品牌API测试ß")
 class MallBrandSpec extends BaseMallSpec{
 
     @Unroll
