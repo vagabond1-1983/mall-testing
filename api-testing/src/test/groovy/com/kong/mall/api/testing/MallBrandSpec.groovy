@@ -15,7 +15,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.*
  * 2. 场景描述 @Title, @Narrative -- done
  * 3. allure report -- done
  * 4. 写入接口
- * 5. 批量运行
+ * 5. 批量运行 surefire -- done
  */
 @Title("品牌API测试ß")
 class MallBrandSpec extends BaseMallSpec{
