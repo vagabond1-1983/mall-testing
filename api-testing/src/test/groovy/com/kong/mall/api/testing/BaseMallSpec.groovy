@@ -17,6 +17,6 @@ class BaseMallSpec extends Specification {
         println("mall site: $mallSite")
         this.requestSpec = given()
                 .relaxedHTTPSValidation()
-                .baseUri(mallSites)
+                .baseUri("$mallSite")
     }
 }
