@@ -13,8 +13,10 @@ class BaseMallSpec extends Specification {
     protected RequestSpecification requestSpec
 
     void setup() {
+        String mallSite = System.getProperty("mall.site") == null ? "https://mall.kongs.info" : System.getProperty("mall.site")
+        println("mall site: $mallSite")
         this.requestSpec = given()
                 .relaxedHTTPSValidation()
-                .baseUri("https://mall.kongs.info")
+                .baseUri(mallSites)
     }
 }
