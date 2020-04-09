@@ -1,10 +1,10 @@
 package com.kong.mall.api.testing
 
+import com.kong.mall.api.constant.GlobalConstant
 import io.restassured.specification.RequestSpecification
 import spock.lang.Specification
 
 import static io.restassured.RestAssured.*
-import static com.kong.mall.api.constant.GlobalConstant.*
 
 /**
  * mall项目api测试基类
@@ -14,9 +14,10 @@ class BaseMallSpec extends Specification {
     protected RequestSpecification requestSpec
 
     void setup() {
-        println("mall site: $MALL_SITE_URL")
+        def site = GlobalConstant.MALL_SITE_URL
+        println("mall site: $site")
         this.requestSpec = given()
                 .relaxedHTTPSValidation()
-                .baseUri("$MALL_SITE_URL")
+                .baseUri(site)
     }
 }
