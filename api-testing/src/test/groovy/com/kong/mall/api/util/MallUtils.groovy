@@ -11,11 +11,11 @@ class MallUtils {
      * @param password
      * @return token = <tokenHead> <token>
      */
-    public static String getToken(String username, String password) {
+    public static String getToken(String site, String username, String password) {
         ResponseBody body = io.restassured.RestAssured.given()
                 .when()
                 .relaxedHTTPSValidation()
-                .baseUri("https://mall.kongs.info")
+                .baseUri(site)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body("{\"username\": \"$username\", \"password\": \"$password\"}")

@@ -4,6 +4,7 @@ import io.restassured.specification.RequestSpecification
 import spock.lang.Specification
 
 import static io.restassured.RestAssured.*
+import static com.kong.mall.api.constant.GlobalConstant.*
 
 /**
  * mall项目api测试基类
@@ -13,10 +14,9 @@ class BaseMallSpec extends Specification {
     protected RequestSpecification requestSpec
 
     void setup() {
-        String mallSite = System.getProperty("mall.site") == null ? "https://mall.kongs.info" : System.getProperty("mall.site")
-        println("mall site: $mallSite")
+        println("mall site: $MALL_SITE_URL")
         this.requestSpec = given()
                 .relaxedHTTPSValidation()
-                .baseUri("$mallSite")
+                .baseUri("$MALL_SITE_URL")
     }
 }
