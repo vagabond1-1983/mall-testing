@@ -1,6 +1,6 @@
 package com.kong.mall.api.filter
 
-import com.kong.mall.api.constant.GlobalConstant
+import static com.kong.mall.api.constant.GlobalConstants.*
 import io.restassured.filter.FilterContext
 import io.restassured.response.Response
 import io.restassured.specification.FilterableRequestSpecification
@@ -15,11 +15,11 @@ import com.kong.mall.api.util.MallUtils
 class MallAdminAuthFilter implements AuthFilter {
     @Override
     Response filter(FilterableRequestSpecification requestSpec, FilterableResponseSpecification responseSpec, FilterContext ctx) {
-        String adminToken = MallUtils.getToken(GlobalConstant.MALL_SITE_URL,
-                    GlobalConstant.ADMIN_USERNAME,
-                    GlobalConstant.ADMIN_PASSWORD)
+        String adminToken = MallUtils.getToken(MALL_SITE_URL,
+                    ADMIN_USERNAME,
+                    ADMIN_PASSWORD)
         requestSpec.given()
-                .header(GlobalConstant.AUTHORIZATION_HEADER_KEY, adminToken)
+                .header(AUTHORIZATION_HEADER_KEY, adminToken)
 
         return ctx.next(requestSpec, responseSpec)
     }

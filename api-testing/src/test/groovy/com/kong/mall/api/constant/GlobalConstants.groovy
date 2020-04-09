@@ -1,11 +1,11 @@
-package com.kong.mall.api.constant;
+package com.kong.mall.api.constant
 
 /**
- * @author vaga
- * @version 2020/4/9 7:26 下午
  * @description 全局常量
+ * @author vaga
+ * @version 2020/4/9 9:50 下午
  */
-public class GlobalConstant {
+class GlobalConstants {
     /**
      * mall api访问地址
      */
