@@ -34,3 +34,4 @@ out/
 ### generate build output
 target/
 allure-results/
+allure-report/

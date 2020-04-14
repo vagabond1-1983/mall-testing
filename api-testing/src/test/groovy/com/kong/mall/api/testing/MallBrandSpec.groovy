@@ -1,6 +1,7 @@
 package com.kong.mall.api.testing
 
 import com.kong.mall.api.filter.MallAdminAuthFilter
+import io.qameta.allure.Description
 import spock.lang.Title
 import spock.lang.Unroll
 
@@ -17,10 +18,11 @@ import static io.restassured.module.jsv.JsonSchemaValidator.*
  * 4. 写入接口
  * 5. 批量运行 surefire -- done
  */
-@Title("品牌API测试ß")
+@Title("品牌API测试")
 class MallBrandSpec extends BaseMallSpec{
 
     @Unroll
+    @Description("品牌列表接口测试")
     def "brand list num:#pageNum, size:#pageSize"() {
         given:
         final request = this.requestSpec
