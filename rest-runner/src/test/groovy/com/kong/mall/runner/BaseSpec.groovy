@@ -13,13 +13,13 @@ import static io.restassured.RestAssured.given
  */
 abstract class BaseSpec {
     protected RequestSpecification requestSpec
-    protected RunnerContext context
+    protected RunnerContext runnerCtx
 
     @BeforeTest
     void setup() {
-        context = loadPlan()
+        runnerCtx = loadPlan()
         this.requestSpec = given()
             .relaxedHTTPSValidation()
-            .baseUri(context)
+            .baseUri(runnerCtx.getBaseUrl())
     }
 }

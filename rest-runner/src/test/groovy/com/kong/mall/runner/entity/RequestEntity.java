@@ -1,6 +1,6 @@
-package com.kong.mall.runner.entity
+package com.kong.mall.runner.entity;
 
-import lombok.Data
+import lombok.Data;
 
 /**
  * @description 请求实体
@@ -9,7 +9,7 @@ import lombok.Data
  */
 @Data
 class RequestEntity implements BaseEntity {
-    private String method
-    private String url
+    private String method;
+    private String url;
 
 }

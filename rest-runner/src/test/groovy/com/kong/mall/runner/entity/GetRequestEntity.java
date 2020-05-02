@@ -1,6 +1,6 @@
-package com.kong.mall.runner.entity
+package com.kong.mall.runner.entity;
 
-import lombok.Data
+import lombok.Data;
 
 /**
  * @description get请求实体

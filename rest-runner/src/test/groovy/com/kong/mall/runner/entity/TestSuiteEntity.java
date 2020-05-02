@@ -1,6 +1,8 @@
-package com.kong.mall.runner.entity
+package com.kong.mall.runner.entity;
 
-import lombok.Data
+import lombok.Data;
+
+import java.util.List;
 
 /**
  * @description 测试套件
@@ -9,5 +11,5 @@ import lombok.Data
  */
 @Data
 class TestSuiteEntity implements BaseEntity {
-    private List<TestCaseEntity> caseEntities
+    private List<TestCaseEntity> caseEntities;
 }
