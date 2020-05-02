@@ -2,6 +2,7 @@ package com.kong.mall.api.testing
 
 import com.kong.mall.api.filter.MallAdminAuthFilter
 import io.qameta.allure.Description
+import io.restassured.path.json.JsonPath
 import spock.lang.Title
 import spock.lang.Unroll
 

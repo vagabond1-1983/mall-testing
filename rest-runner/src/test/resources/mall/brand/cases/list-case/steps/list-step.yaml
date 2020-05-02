@@ -1,0 +1,9 @@
+name: demo api
+base_url: https://mall.kongs.info
+variables:
+  expected_status_code: 200
+request:
+  url: /brand/list?pageNum=1&pageSize=5
+  method: GET
+validate:
+  - eq: ["status_code", $expected_status_code]

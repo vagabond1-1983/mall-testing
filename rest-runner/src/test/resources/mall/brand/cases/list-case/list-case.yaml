@@ -1,0 +1,10 @@
+config:
+  name: testcase description
+  base_url: http://httpbin.org
+  variables:
+    expected_status_code: 200
+
+teststeps:
+-
+  name: demo test case
+  api: steps/list-step.yml
