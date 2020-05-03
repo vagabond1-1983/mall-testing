@@ -14,8 +14,8 @@ public class LoadResourcesListener implements ISuiteListener {
     public void onStart(ISuite iSuite) {
         RunnerContext rctx = ResourcesUtil.loadResources(iSuite.getParameter("project"),
                     iSuite.getAllMethods());
-        // 动态加载监听策略
-        iSuite.addListener(new CaseStrategyListener());
+        // 根据上下文，动态加载监听策略，先默认加载用例策略
+        iSuite.addListener(new CaseStrategyListener(rctx));
     }
 
     public void onFinish(ISuite iSuite) {

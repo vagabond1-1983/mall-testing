@@ -1,7 +1,9 @@
 package com.kong.mall.runner.entity;
 
-import lombok.Data;
 
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -9,8 +11,8 @@ import java.util.Map;
  * @author vaga
  * @version 2020/5/2 11:07 上午
  */
-@Data
-public class RunnerContext implements BaseEntity {
+@Slf4j
+public class RunnerContext implements BaseEntity, Iterator<TestStepEntity> {
     private static volatile RunnerContext instance;
     private RunnerContext() {}
 
@@ -19,7 +21,29 @@ public class RunnerContext implements BaseEntity {
     private Map<String, String> env;
     private TestSuiteEntity suiteEntity;
 
-    private TestStepEntity currentStep;
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
+
+    public Map<String, String> getEnv() {
+        return env;
+    }
+
+    public void setEnv(Map<String, String> env) {
+        this.env = env;
+    }
+
+    public TestSuiteEntity getSuiteEntity() {
+        return suiteEntity;
+    }
+
+    public void setSuiteEntity(TestSuiteEntity suiteEntity) {
+        this.suiteEntity = suiteEntity;
+    }
 
     public static RunnerContext getInstance() {
         if (null == instance) {
@@ -30,5 +54,53 @@ public class RunnerContext implements BaseEntity {
             }
         }
         return instance;
+    }
+
+
+    public boolean hasNext() {
+        if (null == suiteEntity) {
+            return false;
+        }
+
+        if (null == suiteEntity.getCaseEntities()) {
+            return false;
+        }
+
+        if (suiteEntity.getCurrentIndex().get() >= suiteEntity.getCaseEntities().size()) {
+            log.info("用例已经运行完成");
+            return false;
+        }
+
+        TestCaseEntity caseEntity = suiteEntity.getCaseEntities().get(suiteEntity.getCurrentIndex().get());
+        log.debug("当前运行用例为：{}", caseEntity);
+
+        if (caseEntity.getCurrentIndex().get() >= caseEntity.getStepEntities().size()) {
+            log.info("步骤已经运行完成");
+            return false;
+        }
+
+        return true;
+    }
+
+    public TestStepEntity next() {
+        if (!hasNext()) {
+            log.error("已经没有步骤可以运行了");
+            return null;
+        }
+
+        TestCaseEntity caseEntity = suiteEntity.getCaseEntities().get(suiteEntity.getCurrentIndex().get());
+
+        TestStepEntity stepEntity = caseEntity.getStepEntities().get(caseEntity.getCurrentIndex().get());
+
+        caseEntity.getCurrentIndex().incrementAndGet();
+        if (caseEntity.getCurrentIndex().get() == caseEntity.getStepEntities().size() &&
+            suiteEntity.getCurrentIndex().get() < suiteEntity.getCaseEntities().size()) {
+            suiteEntity.getCurrentIndex().incrementAndGet();
+        }
+        return stepEntity;
+    }
+
+    public void remove() {
+
     }
 }

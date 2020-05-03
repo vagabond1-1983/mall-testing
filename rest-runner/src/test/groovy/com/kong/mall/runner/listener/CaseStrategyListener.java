@@ -1,5 +1,7 @@
 package com.kong.mall.runner.listener;
 
+import com.kong.mall.runner.constant.GlobalConstants;
+import com.kong.mall.runner.entity.RunnerContext;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener2;
 import org.testng.ITestContext;
@@ -11,9 +13,16 @@ import org.testng.ITestResult;
  * @description 用例运行策略
  */
 public class CaseStrategyListener implements IInvokedMethodListener2 {
+    private RunnerContext rctx;
+    public CaseStrategyListener(RunnerContext rctx) {
+        this.rctx = rctx;
+    }
+
     public void beforeInvocation(IInvokedMethod iInvokedMethod, ITestResult iTestResult, ITestContext iTestContext) {
-        // check if skip
         // prepare running data of current step
+        if (rctx.hasNext()) {
+            iTestContext.setAttribute(GlobalConstants.CURRENT_STEP_KEY, rctx.next());
+        }
         // setup hook
     }
 

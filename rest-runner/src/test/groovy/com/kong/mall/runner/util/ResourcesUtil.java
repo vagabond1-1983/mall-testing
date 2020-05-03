@@ -1,6 +1,7 @@
 package com.kong.mall.runner.util;
 
-import com.kong.mall.runner.entity.RunnerContext;
+import cn.hutool.core.collection.CollUtil;
+import com.kong.mall.runner.entity.*;
 import org.testng.ITestNGMethod;
 
 import java.util.List;
@@ -26,6 +27,17 @@ public class ResourcesUtil {
     private static RunnerContext mock() {
         RunnerContext ctx = RunnerContext.getInstance();
         ctx.setBaseUrl("http://httpbin.org");
+
+        TestSuiteEntity suiteEntity = new TestSuiteEntity();
+        TestCaseEntity caseEntity = new TestCaseEntity();
+        TestStepEntity stepEntity = new TestStepEntity();
+        RequestEntity requestEntity = new RequestEntity();
+        requestEntity.setMethod("get");
+        requestEntity.setUrl("/headers");
+        stepEntity.setRequestEntity(requestEntity);
+        caseEntity.setStepEntities(CollUtil.newArrayList(stepEntity));
+        suiteEntity.setCaseEntities(CollUtil.newArrayList(caseEntity));
+        ctx.setSuiteEntity(suiteEntity);
         return ctx;
     }
 }

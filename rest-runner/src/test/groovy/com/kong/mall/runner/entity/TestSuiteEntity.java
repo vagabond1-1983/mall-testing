@@ -3,6 +3,7 @@ package com.kong.mall.runner.entity;
 import lombok.Data;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @description 测试套件
@@ -12,4 +13,5 @@ import java.util.List;
 @Data
 public class TestSuiteEntity implements BaseEntity {
     private List<TestCaseEntity> caseEntities;
+    private AtomicInteger currentIndex = new AtomicInteger(0);
 }
