@@ -17,9 +17,8 @@ abstract class BaseSpec {
 
     @BeforeTest
     void setup() {
-        runnerCtx = loadPlan()
+        runnerCtx = RunnerContext.getInstance()
         this.requestSpec = given()
-            .relaxedHTTPSValidation()
             .baseUri(runnerCtx.getBaseUrl())
     }
 }

@@ -10,6 +10,6 @@ import java.util.List;
  * @version 2020/5/2 11:23 上午
  */
 @Data
-class TestSuiteEntity implements BaseEntity {
+public class TestSuiteEntity implements BaseEntity {
     private List<TestCaseEntity> caseEntities;
 }

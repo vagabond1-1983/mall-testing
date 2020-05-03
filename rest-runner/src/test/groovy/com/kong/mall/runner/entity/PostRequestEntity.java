@@ -8,5 +8,5 @@ import lombok.Data;
  * @version 2020/5/2 6:08 下午
  */
 @Data
-class PostRequestEntity extends RequestEntity {
+public class PostRequestEntity extends RequestEntity {
 }

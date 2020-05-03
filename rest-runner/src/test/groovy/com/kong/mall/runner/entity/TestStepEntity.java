@@ -10,7 +10,7 @@ import java.util.List;
  * @version 2020/5/2 11:59 上午
  */
 @Data
-class TestStepEntity implements BaseEntity {
+public class TestStepEntity implements BaseEntity {
     private Config config;
     private RequestEntity requestEntity;
     private List<String> validates;

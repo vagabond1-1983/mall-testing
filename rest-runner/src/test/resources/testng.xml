@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" verbose="1" >
+    <parameter name="project" value="mall"></parameter>
+    <test name="list-case" >
+        <classes>
+            <class name="com.kong.mall.runner.core.StepRunnerSpec" />
+        </classes>
+    </test>
+
+    <listeners>
+        <listener class-name="com.kong.mall.runner.listener.LoadResourcesListener"/>
+    </listeners>
+
+</suite>

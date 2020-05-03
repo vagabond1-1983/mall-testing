@@ -8,7 +8,7 @@ import lombok.Data;
  * @version 2020/5/2 6:06 下午
  */
 @Data
-class RequestEntity implements BaseEntity {
+public class RequestEntity implements BaseEntity {
     private String method;
     private String url;
 

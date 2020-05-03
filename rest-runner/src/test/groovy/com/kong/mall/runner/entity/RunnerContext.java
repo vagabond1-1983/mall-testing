@@ -10,8 +10,25 @@ import java.util.Map;
  * @version 2020/5/2 11:07 上午
  */
 @Data
-class RunnerContext implements BaseEntity {
+public class RunnerContext implements BaseEntity {
+    private static volatile RunnerContext instance;
+    private RunnerContext() {}
+
+
     private String baseUrl;
     private Map<String, String> env;
     private TestSuiteEntity suiteEntity;
+
+    private TestStepEntity currentStep;
+
+    public static RunnerContext getInstance() {
+        if (null == instance) {
+            synchronized (RunnerContext.class) {
+                if (null == instance) {
+                    instance = new RunnerContext();
+                }
+            }
+        }
+        return instance;
+    }
 }

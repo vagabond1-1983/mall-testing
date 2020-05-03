@@ -13,6 +13,6 @@ import org.testng.annotations.Test
 class StepRunnerSpec extends BaseSpec{
     @Test
     public void execute(ITestContext context) {
-        
+        println "OK"
     }
 }
