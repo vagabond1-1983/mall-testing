@@ -5,6 +5,7 @@ import com.kong.mall.runner.entity.*;
 import org.testng.ITestNGMethod;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author vaga
@@ -32,9 +33,16 @@ public class ResourcesUtil {
         TestCaseEntity caseEntity = new TestCaseEntity();
         TestStepEntity stepEntity = new TestStepEntity();
         RequestEntity requestEntity = new RequestEntity();
+        ValidateEntity validateEntity = new ValidateEntity();
         requestEntity.setMethod("get");
         requestEntity.setUrl("/headers");
-        stepEntity.setRequestEntity(requestEntity);
+        stepEntity.setRequest(requestEntity);
+
+        Map<String, Object> val = CollUtil.newHashMap();
+        val.put("statusCode", 200);
+        validateEntity.setEq(CollUtil.newArrayList(val));
+        stepEntity.setValidate(validateEntity);
+
         caseEntity.setStepEntities(CollUtil.newArrayList(stepEntity));
         suiteEntity.setCaseEntities(CollUtil.newArrayList(caseEntity));
         ctx.setSuiteEntity(suiteEntity);

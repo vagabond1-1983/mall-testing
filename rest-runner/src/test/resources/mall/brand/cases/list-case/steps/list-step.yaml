@@ -6,4 +6,4 @@ request:
   url: /brand/list?pageNum=1&pageSize=5
   method: GET
 validate:
-  - eq: ["status_code", $expected_status_code]
+  - eq: ["statusCode", $expected_status_code]

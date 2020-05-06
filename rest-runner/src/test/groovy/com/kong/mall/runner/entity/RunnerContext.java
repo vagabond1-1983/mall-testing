@@ -4,6 +4,7 @@ package com.kong.mall.runner.entity;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -91,6 +92,11 @@ public class RunnerContext implements BaseEntity, Iterator<TestStepEntity> {
         TestCaseEntity caseEntity = suiteEntity.getCaseEntities().get(suiteEntity.getCurrentIndex().get());
 
         TestStepEntity stepEntity = caseEntity.getStepEntities().get(caseEntity.getCurrentIndex().get());
+        // 变量替换
+//        List<String> vars = stepEntity.extract();
+//        Map<String, String> map = null;
+//        stepEntity.fill(map);
+
 
         caseEntity.getCurrentIndex().incrementAndGet();
         if (caseEntity.getCurrentIndex().get() == caseEntity.getStepEntities().size() &&

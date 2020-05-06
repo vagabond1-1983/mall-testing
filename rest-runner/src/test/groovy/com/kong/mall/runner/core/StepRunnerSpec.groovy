@@ -4,11 +4,12 @@ import com.kong.mall.runner.BaseSpec
 import com.kong.mall.runner.constant.GlobalConstants
 import com.kong.mall.runner.entity.RequestEntity
 import com.kong.mall.runner.entity.TestStepEntity
+import com.kong.mall.runner.entity.ValidateEntity
 import org.testng.ITestContext
 import org.testng.annotations.Test
 
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath
-import static org.hamcrest.Matchers.hasSize
+import static org.hamcrest.MatcherAssert.assertThat
+import static org.hamcrest.Matchers.*
 
 /**
  * @description 步骤运行器
@@ -24,7 +25,7 @@ class StepRunnerSpec extends BaseSpec{
         final request = this.requestSpec
                 .when()
 
-        RequestEntity requestEntity = stepEntity.getRequestEntity()
+        RequestEntity requestEntity = stepEntity.getRequest()
         when:
         final response
         if (requestEntity.getMethod().equalsIgnoreCase("get")) {
@@ -34,6 +35,11 @@ class StepRunnerSpec extends BaseSpec{
 
 
         then:
-        response.statusCode() == 200
+        ValidateEntity validateEntity = stepEntity.getValidate()
+        for (Map<String, String> vm : validateEntity.getEq()) {
+            for (String key : vm.keySet()) {
+                assertThat(response[key], equalTo(vm.get(key)))
+            }
+        }
     }
 }
