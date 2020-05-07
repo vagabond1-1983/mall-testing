@@ -13,5 +13,5 @@ import java.util.Map;
 public class Config extends BaseEntity{
     private String name;
     private String baseUrl;
-    private Map<String, String> variables;
+    private Map<String, Object> variables;
 }

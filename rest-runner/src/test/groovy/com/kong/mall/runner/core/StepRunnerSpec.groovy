@@ -5,6 +5,7 @@ import com.kong.mall.runner.constant.GlobalConstants
 import com.kong.mall.runner.entity.RequestEntity
 import com.kong.mall.runner.entity.TestStepEntity
 import com.kong.mall.runner.entity.ValidateEntity
+import com.kong.mall.runner.util.VarHandlerUtil
 import org.testng.ITestContext
 import org.testng.annotations.Test
 
@@ -45,9 +46,13 @@ class StepRunnerSpec extends BaseSpec{
         // validate
         then:
         ValidateEntity validateEntity = stepEntity.getValidate()
-        for (Map<String, String> vm : validateEntity.getEq()) {
+        for (Map<String, Object> vm : validateEntity.getEq()) {
             for (String key : vm.keySet()) {
-                assertThat(response[key], equalTo(fill(vm.get(key), stepEntity.vars)))
+                def value = vm.get(key)
+                if (VarHandlerUtil.isVarBuildIn(value)) {
+                    value = VarHandlerUtil.replace(value, stepEntity.getConfig().getVariables())
+                }
+                assertThat(response[key], equalTo(value))
             }
         }
     }

@@ -3,6 +3,7 @@ package com.kong.mall.runner.util;
 import cn.hutool.core.collection.CollUtil;
 import com.kong.mall.runner.entity.*;
 import org.testng.ITestNGMethod;
+import org.testng.collections.Maps;
 
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,11 @@ public class ResourcesUtil {
         TestSuiteEntity suiteEntity = new TestSuiteEntity();
         TestCaseEntity caseEntity = new TestCaseEntity();
         TestStepEntity stepEntity = new TestStepEntity();
+        Config stepConfig = new Config();
+        Map<String, Object> vars = Maps.newHashMap();
+        vars.put("expected_status_code", 200);
+        stepConfig.setVariables(vars);
+        stepEntity.setConfig(stepConfig);
         RequestEntity requestEntity = new RequestEntity();
         ValidateEntity validateEntity = new ValidateEntity();
         requestEntity.setMethod("get");
@@ -39,7 +45,7 @@ public class ResourcesUtil {
         stepEntity.setRequest(requestEntity);
 
         Map<String, Object> val = CollUtil.newHashMap();
-        val.put("statusCode", 200);
+        val.put("statusCode", "$expected_status_code");
         validateEntity.setEq(CollUtil.newArrayList(val));
         stepEntity.setValidate(validateEntity);
 

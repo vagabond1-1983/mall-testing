@@ -93,12 +93,6 @@ public class RunnerContext extends BaseEntity implements Iterator<TestStepEntity
         TestCaseEntity caseEntity = suiteEntity.getCaseEntities().get(suiteEntity.getCurrentIndex().get());
 
         TestStepEntity stepEntity = caseEntity.getStepEntities().get(caseEntity.getCurrentIndex().get());
-        // 变量替换
-        VarHandlerUtil.replace(stepEntity);
-
-//        Map<String, String> map = match(vars);
-//        stepEntity.fill(map);
-
 
         caseEntity.getCurrentIndex().incrementAndGet();
         if (caseEntity.getCurrentIndex().get() == caseEntity.getStepEntities().size() &&
