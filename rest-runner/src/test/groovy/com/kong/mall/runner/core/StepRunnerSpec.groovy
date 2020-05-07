@@ -21,11 +21,16 @@ class StepRunnerSpec extends BaseSpec{
     @Test
     public void execute(ITestContext context) {
         TestStepEntity stepEntity = context.getAttribute(GlobalConstants.CURRENT_STEP_KEY)
+        // setup hooks
+
+        // request
         given:
         final request = this.requestSpec
                 .when()
 
         RequestEntity requestEntity = stepEntity.getRequest()
+
+        // send request and get response
         when:
         final response
         if (requestEntity.getMethod().equalsIgnoreCase("get")) {
@@ -33,12 +38,16 @@ class StepRunnerSpec extends BaseSpec{
                     .get(requestEntity.getUrl())
         }
 
+        // tear down
 
+        // extract
+
+        // validate
         then:
         ValidateEntity validateEntity = stepEntity.getValidate()
         for (Map<String, String> vm : validateEntity.getEq()) {
             for (String key : vm.keySet()) {
-                assertThat(response[key], equalTo(vm.get(key)))
+                assertThat(response[key], equalTo(fill(vm.get(key), stepEntity.vars)))
             }
         }
     }

@@ -11,7 +11,7 @@ import java.util.Map;
  * @description 验证实体
  */
 @Data
-public class ValidateEntity {
+public class ValidateEntity extends BaseEntity {
     private List<Map<String, Object>> eq;
 
 }

@@ -7,4 +7,6 @@ package com.kong.mall.runner.constant;
  */
 public interface GlobalConstants {
     String CURRENT_STEP_KEY = "current_step";
+    String VARIABLE_PREFIX = "$";
+
 }

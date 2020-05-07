@@ -21,4 +21,6 @@ abstract class BaseSpec {
         this.requestSpec = given()
             .baseUri(runnerCtx.getBaseUrl())
     }
+
+
 }

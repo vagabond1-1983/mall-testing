@@ -1,6 +1,7 @@
 package com.kong.mall.runner.entity;
 
 
+import com.kong.mall.runner.util.VarHandlerUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Iterator;
@@ -13,7 +14,7 @@ import java.util.Map;
  * @version 2020/5/2 11:07 上午
  */
 @Slf4j
-public class RunnerContext implements BaseEntity, Iterator<TestStepEntity> {
+public class RunnerContext extends BaseEntity implements Iterator<TestStepEntity> {
     private static volatile RunnerContext instance;
     private RunnerContext() {}
 
@@ -93,8 +94,9 @@ public class RunnerContext implements BaseEntity, Iterator<TestStepEntity> {
 
         TestStepEntity stepEntity = caseEntity.getStepEntities().get(caseEntity.getCurrentIndex().get());
         // 变量替换
-//        List<String> vars = stepEntity.extract();
-//        Map<String, String> map = null;
+        VarHandlerUtil.replace(stepEntity);
+
+//        Map<String, String> map = match(vars);
 //        stepEntity.fill(map);
 
 

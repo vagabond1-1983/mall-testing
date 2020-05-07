@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @version 2020/5/2 11:24 上午
  */
 @Data
-public class TestCaseEntity implements BaseEntity {
+public class TestCaseEntity extends BaseEntity {
     private Config config;
     private List<TestStepEntity> stepEntities;
     private AtomicInteger currentIndex = new AtomicInteger(0);
