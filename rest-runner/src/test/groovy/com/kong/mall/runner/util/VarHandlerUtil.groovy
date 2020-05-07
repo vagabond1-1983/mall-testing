@@ -2,7 +2,6 @@ package com.kong.mall.runner.util
 
 import cn.hutool.core.convert.Convert
 import com.kong.mall.runner.constant.GlobalConstants
-import com.kong.mall.runner.entity.TestStepEntity
 import groovy.text.SimpleTemplateEngine
 import groovy.util.logging.Slf4j
 
